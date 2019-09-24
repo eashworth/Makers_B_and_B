@@ -6,5 +6,8 @@ feature 'view database entry' do
     click_button 'submit'
     expect(page).to have_content 'testname1'
     expect(page).to have_content 'testemail1'
+
+    expect(page).not_to have_content 'testname3'
+    expect(page).not_to have_content 'testemail3'
   end
 end
