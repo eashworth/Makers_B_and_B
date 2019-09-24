@@ -26,4 +26,27 @@ As a user,
 So I can manage my bookings,
 I want to be able to offer a range of dates when my space is available.
 
-New user story
+As a user,
+So I choose between available spaces,
+I want to be able to see a list of available spaces.
+
+As a user,
+So I can stay in a place of my choice,
+I want to be able to request a space for one night.
+
+As a user,
+So I can decide who stays at my property,
+I want to approve requests from other users.
+
+As a user,
+So that spaces cannot be double-booked,
+I want a space to be blocked after it has been booked.
+
+As a user,
+So that I can choose who I want to stay at my property,
+I want to be able to recieve multiple requests until I confirm.
+
+
+
+
+
