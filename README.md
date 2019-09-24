@@ -25,3 +25,5 @@ I want to be able to enter a name for each space, with a short description and a
 As a user,
 So I can manage my bookings,
 I want to be able to offer a range of dates when my space is available.
+
+New user story
