@@ -6,6 +6,7 @@ A web application that allows users to list spaces and rent them out on a per-ni
 
 User stories:
 
+```
 As a user,
 So I can sign in to Makers B&B,
 I want to create a new account.
@@ -45,7 +46,7 @@ I want a space to be blocked after it has been booked.
 As a user,
 So that I can choose who I want to stay at my property,
 I want to be able to recieve multiple requests until I confirm.
-
+```
 
 
 
