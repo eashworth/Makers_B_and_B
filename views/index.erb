@@ -4,3 +4,11 @@
   <input value='password' type='text' name='password'>
   <input type='submit' name='submit'>
 </form>
+
+<p>
+<% User.all.each do |user| %>
+  <%= user.name %>
+  <%= user.email %>
+  <% end %>
+</p>
+
