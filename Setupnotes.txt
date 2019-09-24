@@ -1,0 +1,86 @@
+Create Gemfile containng relevant gems, inc test group.
+gem 'capybara'
+gem 'capybara/rspec'
+gem 'capybara/dsl'
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
+gem 'simplecov'
+gem 'simplecov-console'
+
+$bundle
+$rspec -- init
+
+In .rspec, add:
+  --color
+  --format documentation
+
+Create config.ru, and add:
+  require relative'./app'
+  require 'data_mapper'
+  require 'dm-migrations'
+  require 'sinatra'
+  run MakersBnB
+
+Create app.rb, and add:
+
+require 'data_mapper'
+require 'dm-migrations'
+require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/flash'
+require 'spec_helper'
+
+DataMapper::Logger.new($stdout, :debug)
+
+// In the line below:
+    //student is name of computer
+    @27.0.0.1 is the default postgres socket number
+      (which can be found on Table Plus whe you create a connection).
+    MakersBnB is database name.
+DataMapper.setup(:default, 'postgres://student@27.0.0.1'/MakersBnB)
+DataMapper.auto_migrate!
+
+class MakersBnb < Sinatra::base
+
+// Enable ruby to talk to javascript:
+set :public_folder, Proc.new { File.join(root, "static") }
+
+In spec-helper, add:
+
+ENV['ENVIRONMENT'] = 'test'
+ENV['RACK_ENV'] = 'test'
+
+require File.join(File.dirname(__FILE_), ‘..’, ‘app.rb’)
+// and require the gems from the Gemfile.
+
+gem 'capybara'
+gem 'capybara/rspec'
+gem 'capybara/dsl'
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
+gem 'simplecov'
+gem 'simplecov-console'
+
+SimpleCov.formatter = SImpleCov::Formatter::Multiformatter.new([
+  SimpleCov::Formatter::Console,
+  SimpleCov::Formatter::HTMLFormatter
+])
+SimpleCov.start
+
+Capybara.app = MakersBnb
+
+
+// The file below is an example of how you would interact with the database using data mapper:
+Create user.rb, and add:
+
+require 'data_mapper'
+
+class User
+  include DataMapper::Resource
+
+  property :id,       Serial
+  property :name,     String
+  property :email,    String
+  property :password, String
+
+end
