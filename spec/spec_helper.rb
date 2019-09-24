@@ -3,13 +3,13 @@ ENV['RACK_ENV'] = 'test'
 
 require File.join(File.dirname(__FILE__), '..','app.rb')
 
-gem 'capybara'
-gem 'capybara/rspec'
-gem 'capybara/dsl'
-gem 'data_mapper'
-gem 'dm-postgres-adapter'
-gem 'simplecov'
-gem 'simplecov-console'
+require 'capybara'
+require 'capybara/rspec'
+require 'capybara/dsl'
+require 'data_mapper'
+require 'dm-postgres-adapter'
+require 'simplecov'
+require 'simplecov-console'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
