@@ -11,6 +11,7 @@ require 'dm-postgres-adapter'
 require 'simplecov'
 require 'simplecov-console'
 
+
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
   SimpleCov::Formatter::HTMLFormatter
@@ -36,6 +37,11 @@ Capybara.app = MakersBnb
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+  DataMapper::Logger.new($stdout, :debug)
+  DataMapper.setup(:default, 'postgres://michael@127.0.0.1/makersbnb_test')
+  DataMapper.auto_migrate!
+  
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
