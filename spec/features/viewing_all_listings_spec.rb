@@ -16,6 +16,7 @@ feature 'view listings page' do
     fill_in 'price_pn', with: 10
     click_button 'submit'
 
+    expect(current_path).to eq('/listings/all')
     expect(page).to have_content 'test_space1'
     expect(page).to have_content 'description1'
   end

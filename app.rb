@@ -35,10 +35,6 @@ class MakersBnb < Sinatra::Base
     erb :'listings/all'
   end
 
-  # post '/listings/all' do
-  #   erb :'listings/all'
-  # end
-
   post '/listings/new' do
     name = params[:name]
     description = params[:description]
