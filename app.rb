@@ -28,21 +28,29 @@ class MakersBnb < Sinatra::Base
     password = params[:password]
 
     User.create(:name => name, :email => email, :password => password)
-    erb :index
+    redirect 'listings/all'
   end
 
-  get '/listings' do
-    erb :listings
-  end 
+  get '/listings/all' do
+    erb :'listings/all'
+  end
 
-  post '/listings' do 
+  # post '/listings/all' do
+  #   erb :'listings/all'
+  # end
+
+  post '/listings/new' do
     name = params[:name]
     description = params[:description]
     price_pn = params[:price_pn]
     @user_obj = User.first(:name => session[:name])
     Space.create(:name => name, :description => description, :price_pn => price_pn, :user => @user_obj)
-    redirect '/'
+    redirect '/listings/all'
   end
 
+  get '/listings/new' do
+    erb :'/listings/new'
+  end
+  
   run! if app_file == $0
 end

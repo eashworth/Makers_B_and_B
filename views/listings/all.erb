@@ -1,0 +1,11 @@
+<p>
+<% Space.all.each do |space| %>
+  <%= space.name %>
+  <%= space.description %>
+  <%= space.price_pn %>
+  <% end %>
+</p>
+
+<form action='/listings/new' method='GET'>
+  <input type='submit' name='Create space' value='Create space'>
+</form>
