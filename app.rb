@@ -1,4 +1,5 @@
 require './model/user'
+require './model/space'
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'data_mapper'
@@ -19,30 +20,29 @@ class MakersBnb < Sinatra::Base
     erb :index
   end 
 
-  post '/new' do
+  post '/' do
     name = params[:name]
     email = params[:email]
     password = params[:password]
 
     User.create(:name => name, :email => email, :password => password)
-    session[:user_id] = User.first(:name => name).id
+    session[:user_id] = User.first(:name => name)
 
-    p User.first(:name => name).id
-    p User.first(:name => name).name
-    p "USER ID:"
-    p session[:user_id]
-    erb :new
+    erb :index
   end
 
   get '/listings' do
-    # name = params[:name]
-    # description = params[:description]
-    # price_pn = params[:price_pn]
-    p "USER ID:"
-    p session[:user_id]
-    @user_id = session[:user_id]
     erb :listings
   end 
+
+  post '/listings' do 
+    name = params[:name]
+    description = params[:description]
+    price_pn = params[:price_pn]
+    # @user_id = session[:user_id]
+
+    Space.create(:name => name, :description => description, :price_pn => price_pn)
+  end
 
   run! if app_file == $0
 end
