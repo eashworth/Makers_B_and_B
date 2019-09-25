@@ -9,6 +9,6 @@ class Space
   property :description,    String, :required => true
   property :price_pn,       Integer, :required => true
 
-  # belongs_to :user 
+  belongs_to :user 
 end
 

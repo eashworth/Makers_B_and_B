@@ -8,6 +8,7 @@ require 'sinatra'
 
   DataMapper::Logger.new($stdout, :debug)
   DataMapper.setup(:default, 'postgres://michael@127.0.0.1/makersbnb')
+  DataMapper.auto_upgrade!
   DataMapper.finalize 
 
 class MakersBnb < Sinatra::Base
@@ -22,12 +23,11 @@ class MakersBnb < Sinatra::Base
 
   post '/' do
     name = params[:name]
+    session[:name] = name
     email = params[:email]
     password = params[:password]
 
     User.create(:name => name, :email => email, :password => password)
-    session[:user_id] = User.first(:name => name)
-
     erb :index
   end
 
@@ -39,9 +39,9 @@ class MakersBnb < Sinatra::Base
     name = params[:name]
     description = params[:description]
     price_pn = params[:price_pn]
-    # @user_id = session[:user_id]
-
-    Space.create(:name => name, :description => description, :price_pn => price_pn)
+    @user_obj = User.first(:name => session[:name])
+    Space.create(:name => name, :description => description, :price_pn => price_pn, :user => @user_obj)
+    redirect '/'
   end
 
   run! if app_file == $0

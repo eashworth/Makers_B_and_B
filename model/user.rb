@@ -3,8 +3,11 @@ require 'data_mapper'
 class User
   include DataMapper::Resource
 
-  property :id,       Serial, :required => true
-  property :name,     String, :required => true
-  property :email,    String, :required => true
-  property :password, String, :required => true
+  property :id,       Serial
+  property :name,     String 
+  property :email,    String
+  property :password, String
+
+  has n, :spaces
 end
+
