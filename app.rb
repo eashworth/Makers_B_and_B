@@ -28,14 +28,20 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/register' do
-    name = params[:name]
-    email = params[:email]
-    username = params[:username]
-    password = params[:password]
-    session[:username] = username
-    User.create(:name => name, :email => email, :username => username, :password => password)
-    flash[:notice] = "Registration successful!"
-    redirect '/home'
+    user = User.create(
+      :name => params[:name],
+      :email => params[:email],
+      :username => params[:username],
+      :password => params[:password]
+    )
+    if user.id
+      session[:username] = params[:username]
+      flash[:notice] = "Registration successful!"
+      redirect '/home'
+    else
+      flash[:notice] = "Username already in use. Please choose another."
+      redirect '/register'
+    end
   end
 
   get '/home' do
