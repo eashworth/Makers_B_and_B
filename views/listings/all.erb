@@ -9,7 +9,7 @@
     <%= space.date_from %>
     <%= space.date_to %>
     <form action='/listings/all' method='post'>
-      <input value='date' type='date' placeholder="DD/MM/YYYY">
+      <input value='date' name='date' type='date' placeholder="DD/MM/YYYY">
       <input value='test' name='test' type='text'>
       <input type='hidden' name="space_id" value='<%= space.id %>'>
       <input type='submit' name='request' value='request'>

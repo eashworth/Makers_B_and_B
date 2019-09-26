@@ -8,6 +8,7 @@ feature 'making requests' do
 
     expect(current_path).to eq('/listings/all')
 
+
     click_button 'Create space'
     expect(current_path).to eq('/listings/new')
 
@@ -19,11 +20,12 @@ feature 'making requests' do
     click_button 'submit'
 
 
-    # expect(current_path).to eq('/listings/all')
+    expect(current_path).to eq('/listings/all')
 
-    fill_in('test', with: '2019-09-29')
-    # first('space').click_button 'request'
+    first('.space').fill_in 'date', with: '2019-09-29'
+    first('.space').click_button 'request'
 
+    expect(current_path).to eq('/listings/req_confirmation')
     expect(page).to have_content 'Request sent for 2019-09-29.'
   end
 end

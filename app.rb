@@ -8,7 +8,7 @@ require 'dm-migrations'
 require 'sinatra'
 
   DataMapper::Logger.new($stdout, :debug)
-  DataMapper.setup(:default, 'postgres://michael@127.0.0.1/makersbnb')
+  DataMapper.setup(:default, 'postgres://rafaela@127.0.0.1/makersbnb')
   DataMapper.auto_upgrade!
   DataMapper.finalize
 
@@ -56,6 +56,8 @@ class MakersBnb < Sinatra::Base
     date_to = params[:date_to]
     @user_obj = User.first(:name => session[:name])
     Space.create(:name => name, :description => description, :price_pn => price_pn, :date_from => date_from, :date_to => date_to, :user => @user_obj)
+
+    redirect '/listings/all'
   end
 
   get '/listings/new' do
