@@ -12,6 +12,7 @@ require 'sinatra'
   DataMapper.finalize
 
 class MakersBnb < Sinatra::Base
+  register Sinatra::Flash
 
   enable :sessions
 
@@ -38,6 +39,12 @@ class MakersBnb < Sinatra::Base
   get'/home' do
     @user_obj = User.first(:username => session[:username])
     erb :home
+  end
+
+  get '/logout' do
+    flash[:notice] = "You have logged out."
+    session[:username] = nil
+    redirect '/'
   end
 
   get '/listings/all' do
