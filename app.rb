@@ -1,3 +1,4 @@
+require './model/request'
 require './model/user'
 require './model/space'
 require 'sinatra/base'
@@ -7,7 +8,7 @@ require 'dm-migrations'
 require 'sinatra'
 
   DataMapper::Logger.new($stdout, :debug)
-  DataMapper.setup(:default, 'postgres://student@127.0.0.1/makersbnb')
+  DataMapper.setup(:default, 'postgres://rafaela@127.0.0.1/makersbnb')
   DataMapper.auto_upgrade!
   DataMapper.finalize
 
@@ -33,6 +34,16 @@ class MakersBnb < Sinatra::Base
 
   get '/listings/all' do
     erb :'listings/all'
+  end
+
+  post '/listings/all' do
+    date = params[:date]
+    space_id = params[:id]
+
+    @space_obj = Space.get(space_id)
+    @user_obj = User.first(:name => session[:name])
+    Request.create(:date => date, :user => @user_obj, :space => @space_obj)
+    redirect 'listings/all'
   end
 
   post '/listings/new' do

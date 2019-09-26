@@ -39,9 +39,9 @@ Capybara.app = MakersBnb
 RSpec.configure do |config|
 
   DataMapper::Logger.new($stdout, :debug)
-  DataMapper.setup(:default, 'postgres://michael@127.0.0.1/makersbnb_test')
+  DataMapper.setup(:default, 'postgres://rafaela@127.0.0.1/makersbnb_test')
   DataMapper.auto_migrate!
-  
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

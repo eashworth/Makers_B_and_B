@@ -1,14 +1,24 @@
-<p>
+<form action='listings/all' method='post'>
+<input value='date' type='date' name='date' placeholder="DD/MM/YYYY">
+<input type='submit' name='request' value='request'>
+</form>
+
+<ul>
 <% Space.all.each do |space| %>
+<li class='space'>
+  <form action='/listings/all' method='post'>
+  <input type='submit' name='request' value='request'>
+  </form>
+  <%= space.id %>
   <%= space.name %>
   <%= space.description %>
   <%= space.price_pn %>
   <%= space.date_from %>
   <%= space.date_to %>
-
+  </li>
   <% end %>
-  
-</p>
+</ul>
+
 
 <form action='/listings/new' method='GET'>
   <input type='submit' name='Create space' value='Create space'>
