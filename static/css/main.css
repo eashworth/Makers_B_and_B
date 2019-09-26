@@ -1,5 +1,15 @@
-
 body {
-  font-family: Arial;
-  text: lightblue;
+  background-color: #FFDAB9;
+}
+h1 {
+  text-align: center;
+  color: SeaGreen;
+}
+h2 {
+  text-align: center;
+  color: DarkSeaGreen;
+}
+.content {
+  max-width: 500px;
+  margin: auto;
 }
