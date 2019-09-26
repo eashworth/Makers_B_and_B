@@ -7,7 +7,7 @@ require 'dm-migrations'
 require 'sinatra'
 
   DataMapper::Logger.new($stdout, :debug)
-  DataMapper.setup(:default, 'postgres://student@127.0.0.1/makersbnb')
+  DataMapper.setup(:default, 'postgres://Contrabando2@127.0.0.1/makersbnb')
   DataMapper.auto_upgrade!
   DataMapper.finalize
 
@@ -21,14 +21,23 @@ class MakersBnb < Sinatra::Base
     erb :index
   end
 
-  post '/' do
-    name = params[:name]
-    session[:name] = name
-    email = params[:email]
-    password = params[:password]
+  get '/register' do
+    erb :register
+  end
 
-    User.create(:name => name, :email => email, :password => password)
-    redirect 'listings/all'
+  post '/home' do
+    name = params[:name]
+    email = params[:email]
+    username = params[:username]
+    password = params[:password]
+    session[:username] = username
+    User.create(:name => name, :email => email, :username => username, :password => password)
+    redirect '/home'
+  end
+
+  get'/home' do
+    @user_obj = User.first(:username => session[:username])
+    erb :home
   end
 
   get '/listings/all' do

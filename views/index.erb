@@ -1,13 +1,11 @@
-<form action='/' method='POST'>
-  <input value='name' type='text' name='name'>
-  <input value='email' type='text' name='email'>
-  <input value='password' type='text' name='password'>
-  <input type='submit' name='submit'>
+<form action='/register' method='GET'>
+  <input type='submit' name='register' value='Register for an account'>
 </form>
 
-<p>
-<% User.all.each do |user| %>
-  <%= user.name %>
-  <%= user.email %>
-  <% end %>
-</p>
+<form action='/login' method='GET'>
+  <input type='button' name='login' value='Login'>
+</form>
+
+<form action='/listings/all' method='GET'>
+  <input type='button' name='view_all_listings' value='View all listings'>
+</form>
