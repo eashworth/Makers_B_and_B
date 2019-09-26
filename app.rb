@@ -1,5 +1,6 @@
 require './model/user'
 require './model/space'
+require './model/login'
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'data_mapper'
@@ -26,17 +27,18 @@ class MakersBnb < Sinatra::Base
     erb :register
   end
 
-  post '/home' do
+  post '/register' do
     name = params[:name]
     email = params[:email]
     username = params[:username]
     password = params[:password]
     session[:username] = username
     User.create(:name => name, :email => email, :username => username, :password => password)
+    flash[:notice] = "Registration successful!"
     redirect '/home'
   end
 
-  get'/home' do
+  get '/home' do
     @user_obj = User.first(:username => session[:username])
     erb :home
   end
@@ -45,6 +47,21 @@ class MakersBnb < Sinatra::Base
     flash[:notice] = "You have logged out."
     session[:username] = nil
     redirect '/'
+  end
+
+  get '/login' do
+    p "hello"
+    erb :login
+  end
+
+  post '/login' do
+    if Login.test(params[:username], params[:password])
+      session[:username] = params[:username]
+      flash[:notice] = "Thank you for logging in."
+      redirect '/home'
+    else
+      p "no thanks"
+    end
   end
 
   get '/listings/all' do
