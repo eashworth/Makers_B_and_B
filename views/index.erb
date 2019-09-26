@@ -1,13 +1,50 @@
-<form action='/' method='POST'>
-  <input value='name' type='text' name='name'>
-  <input value='email' type='text' name='email'>
-  <input value='password' type='text' name='password'>
-  <input type='submit' name='submit'>
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MakersBnb</title>
+    <link rel="stylesheet" href="static/css/main.css">
+  </head>
 
-<p>
+  <style>
+    h1 {
+      text-align: center;
+      color: lightblue;
+    }
+    h2 {
+      text-align: center;
+      color: lightblue;
+    }
+    .content {
+      max-width: 500px;
+      margin: auto;
+    }
+
+  </style>
+
+  <body>
+    <section>
+      <h1>MakersBnB</h1>
+      <h2>Not a member? Create an account:</h2>
+
+      <div class="content">
+      <form action='/' method='POST'>
+      <input value='name' type='text' name='name'>
+      <input value='email' type='text' name='email'>
+      <input value='password' type='text' name='password'>
+      <input type='submit' name='submit'>
+      </form>
+      </div>
+
+    </section>
+
+<!-- <p>
 <% User.all.each do |user| %>
+<d>
   <%= user.name %>
+</d>
+<d>
   <%= user.email %>
+</d>
   <% end %>
-</p>
+</p> -->
+</html>
