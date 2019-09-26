@@ -1,6 +1,6 @@
 require './model/user'
 require './model/space'
-require './model/login'
+require './lib/login'
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'data_mapper'
@@ -50,17 +50,17 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/login' do
-    p "hello"
     erb :login
   end
 
   post '/login' do
-    if Login.test(params[:username], params[:password])
+    if Login.check_login(params[:username], params[:password])
       session[:username] = params[:username]
       flash[:notice] = "Thank you for logging in."
       redirect '/home'
     else
-      p "no thanks"
+      flash[:notice] = "Login failed: incorrect username and/or password."
+      redirect '/login'
     end
   end
 
