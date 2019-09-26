@@ -1,15 +1,55 @@
-<p>
-<% Space.all.each do |space| %>
-  <%= space.name %>
-  <%= space.description %>
-  <%= space.price_pn %>
-  <%= space.date_from %>
-  <%= space.date_to %>
+<!DOCTYPE html>
+<html lang = "en-US">
+  <head
+    <meta charset = "UTF-8">
+    <title>Spaces</title>
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+  </head>
 
-  <% end %>
-  
-</p>
+  <!-- <style>
+    body {
+      background-color: #FFDAB9;
+    }
+    h1 {
+      text-align: center;
+      color: SeaGreen;
+    }
+    h2 {
+      text-align: center;
+    }
+    .content {
+      text-align: center;
+      margin: auto;
+    }
+  </style> -->
 
-<form action='/listings/new' method='GET'>
-  <input type='submit' name='Create space' value='Create space'>
-</form>
+<body>
+  <section>
+    <h1>Listings</h1>
+    <div class="content">
+    <% Space.all.each do |space| %>
+    <div>
+      <%= space.name %>
+    </div>
+    <div>
+      <%= space.description %>
+      £<%= space.price_pn %>
+    </div>
+    <div>
+      Available
+      From:<%= space.date_from %>
+      To:<%= space.date_to %>
+    </div>
+
+      <% end %>
+    </div>
+    <div>
+    <h2>
+    <form action='/listings/new' method='GET'>
+      <input type='submit' name='Create space' value='Create space'>
+    </form>
+    </h2>
+    </div>
+  </section>
+</body>
+</html>
