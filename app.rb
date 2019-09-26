@@ -64,5 +64,14 @@ class MakersBnb < Sinatra::Base
     erb :'/listings/new'
   end
 
+  get '/bookings' do
+    p session[:request_id]
+    erb :bookings
+  end
+
+  get '/bookings/confirm' do
+    erb :request_approval
+  end
+
   run! if app_file == $0
 end

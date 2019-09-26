@@ -1,0 +1,13 @@
+<% Request.all.each do |request| %>
+<div class='request'>
+  <%= request.date %>
+  <%= request.user_id %>
+  <form action='/listings/all' method='post'>
+    <input type='submit' name='confirm' value='confirm'>
+  </form>
+
+  <form action='/listings/all' method='post'>
+    <input type='submit' name='deny' value='deny'>
+  </form>
+</div>
+<% end %>
