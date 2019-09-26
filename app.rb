@@ -7,9 +7,9 @@ require 'dm-migrations'
 require 'sinatra'
 
   DataMapper::Logger.new($stdout, :debug)
-  DataMapper.setup(:default, 'postgres://michael@127.0.0.1/makersbnb')
+  DataMapper.setup(:default, 'postgres://student@127.0.0.1/makersbnb')
   DataMapper.auto_upgrade!
-  DataMapper.finalize 
+  DataMapper.finalize
 
 class MakersBnb < Sinatra::Base
 
@@ -19,7 +19,7 @@ class MakersBnb < Sinatra::Base
 
   get '/' do
     erb :index
-  end 
+  end
 
   post '/' do
     name = params[:name]
@@ -39,14 +39,16 @@ class MakersBnb < Sinatra::Base
     name = params[:name]
     description = params[:description]
     price_pn = params[:price_pn]
+    date_from = params[:date_from]
+    date_to = params[:date_to]
     @user_obj = User.first(:name => session[:name])
-    Space.create(:name => name, :description => description, :price_pn => price_pn, :user => @user_obj)
+    Space.create(:name => name, :description => description, :price_pn => price_pn, :date_from => date_from, :date_to => date_to, :user => @user_obj)
     redirect '/listings/all'
   end
 
   get '/listings/new' do
     erb :'/listings/new'
   end
-  
+
   run! if app_file == $0
 end

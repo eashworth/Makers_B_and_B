@@ -8,7 +8,8 @@ class Space
   property :name,           String, :required => true
   property :description,    String, :required => true
   property :price_pn,       Integer, :required => true
+  property :date_from,      Date, :required => true
+  property :date_to,        Date, :required => true
 
-  belongs_to :user 
+  belongs_to :user
 end
-
