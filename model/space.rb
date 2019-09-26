@@ -1,5 +1,5 @@
-require_relative 'user'
 require 'data_mapper'
+require_relative 'user'
 
 class Space
   include DataMapper::Resource

@@ -1,25 +1,22 @@
-<form action='listings/all' method='post'>
-<input value='date' type='date' name='date' placeholder="DD/MM/YYYY">
-<input type='submit' name='request' value='request'>
-</form>
+<input value='test' name='test' type='text'>
 
-<ul>
-<% Space.all.each do |space| %>
-<li class='space'>
-  <form action='/listings/all' method='post'>
-  <input type='submit' name='request' value='request'>
-  </form>
-  <%= space.id %>
-  <%= space.name %>
-  <%= space.description %>
-  <%= space.price_pn %>
-  <%= space.date_from %>
-  <%= space.date_to %>
-  </li>
+  <% Space.all.each do |space| %>
+  <div class='space'>
+    <%= space.id %>
+    <%= space.name %>
+    <%= space.description %>
+    <%= space.price_pn %>
+    <%= space.date_from %>
+    <%= space.date_to %>
+    <form action='/listings/all' method='post'>
+      <input value='date' type='date' placeholder="DD/MM/YYYY">
+      <input value='test' name='test' type='text'>
+      <input type='hidden' name="space_id" value='<%= space.id %>'>
+      <input type='submit' name='request' value='request'>
+    </form>
+  </div>
   <% end %>
-</ul>
 
-
-<form action='/listings/new' method='GET'>
+<form action='/listings/new' method='get'>
   <input type='submit' name='Create space' value='Create space'>
 </form>
