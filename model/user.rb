@@ -11,10 +11,10 @@ class User
   property :password_digest, Text
 
   has n, :spaces
+  has n, :requests
 
   def password=(password)
     hashed_password = BCrypt::Password.create(password)
     update(password_digest: hashed_password)
   end  
 end
-

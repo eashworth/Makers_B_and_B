@@ -1,5 +1,5 @@
-require_relative 'user'
 require 'data_mapper'
+require_relative 'user'
 
 class Space
   include DataMapper::Resource
@@ -12,4 +12,6 @@ class Space
   property :date_to,        Date, :required => true
 
   belongs_to :user
+
+  has n, :requests
 end

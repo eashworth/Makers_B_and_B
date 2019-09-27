@@ -1,14 +1,23 @@
-<p>
-<% Space.all.each do |space| %>
-  <%= space.name %>
-  <%= space.description %>
-  <%= space.price_pn %>
-  <%= space.date_from %>
-  <%= space.date_to %>
-
+  <% Space.all.each do |space| %>
+  <div class='space'>
+    <%= space.id %>
+    <%= space.name %>
+    <%= space.description %>
+    <%= space.price_pn %>
+    <%= space.date_from %>
+    <%= space.date_to %>
+    <form action='/listings/all' method='post'>
+      <input value='date' name='date' type='date' placeholder="DD/MM/YYYY">
+      <input type='hidden' name="space_id" value='<%= space.id %>'>
+      <input type='submit' name='request' value='request'>
+    </form>
+  </div>
   <% end %>
-</p>
 
-<form action='/listings/new' method='GET'>
+<form action='/listings/new' method='get'>
   <input type='submit' name='Create space' value='Create space'>
+</form>
+
+<form action='/bookings' method='get'>
+  <input type='submit' name='View bookings' value='View bookings'>
 </form>
