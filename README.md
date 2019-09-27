@@ -4,7 +4,52 @@ A Makers Academy group project to build an Air BnB clone.
 
 A web application that allows users to list spaces and rent them out on a per-night basis.
 
-User stories:
+## HOW TO RUN
+
+# Step 1:
+
+Clone this repo and run the following:
+
+```
+bundle install
+```
+
+
+# Step 2:
+
+In your Terminal, create two local databases using postgresql:
+
+```
+CREATE DATABASE makersbnb;
+CREATE DATABASE makersbnb_test;
+```
+
+You do not need to create any tables within the databases.
+That is done automatically by the app.
+
+
+# Step 3
+
+Modify the database access commands to work on your local machine.
+This is done as follows:
+
+In spec-helper, modify this command:
+
+```
+DataMapper.setup(:default, 'postgres://michael@127.0.0.1/makersbnb_test')
+```
+changing michael to your local user name.
+
+In app.rb, modify this command:
+
+```
+DataMapper.setup(:default, 'postgres://student@127.0.0.1/makersbnb')
+```
+changing student to your local user name.
+
+
+
+## User stories:
 
 ```
 As a user,
@@ -47,7 +92,3 @@ As a user,
 So that I can choose who I want to stay at my property,
 I want to be able to recieve multiple requests until I confirm.
 ```
-
-
-
-
