@@ -8,7 +8,7 @@ require 'dm-migrations'
 require 'sinatra'
 
   DataMapper::Logger.new($stdout, :debug)
-  DataMapper.setup(:default, 'postgres://mackenziedixon@127.0.0.1/makersbnb')
+  DataMapper.setup(:default, 'postgres://student@127.0.0.1/makersbnb')
   DataMapper.auto_upgrade!
   DataMapper.finalize
 
@@ -35,9 +35,9 @@ class MakersBnb < Sinatra::Base
     user = User.create(
       :name => params[:name],
       :email => params[:email],
-      :username => params[:username],
-      :password => params[:password]
+      :username => params[:username]
     )
+    user.password = params[:password]
     if user.id
       session[:username] = params[:username]
       flash[:notice] = "Registration successful!"
