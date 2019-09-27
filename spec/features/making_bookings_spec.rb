@@ -1,5 +1,5 @@
-feature 'making requests' do
-  scenario 'user can request an space' do
+feature 'making bookings ' do
+  scenario 'owner can confirm a booking' do
     visit '/'
     fill_in 'name', with: 'testname11'
     fill_in 'email', with: 'testemail1'
@@ -22,13 +22,17 @@ feature 'making requests' do
 
     first('.space').fill_in 'date', with: '2019-09-29'
     first('.space').click_button 'request'
-
     expect(current_path).to eq('/listings/req_confirmation')
     expect(page).to have_content 'Request sent for 2019-09-29.'
 
     click_button 'Back'
+
     expect(current_path).to eq('/listings/all')
     click_button 'View bookings'
     expect(current_path).to eq('/bookings')
+
+    first('.request').click_button('confirm')
+
+    expect(page).to have_content('Booking confirmed for 2019-09-29.')
   end
 end

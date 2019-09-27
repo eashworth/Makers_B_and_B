@@ -28,10 +28,5 @@ feature 'viewing requests' do
 
     click_button 'View bookings'
     expect(current_path).to eq('/bookings')
-
-    first('.request').click_button 'confirm'
-    expect(current_path).to eq('/bookings/confirm')
-    expect(page).to have_content 'Approved for 2019-09-29.'
-
   end
 end

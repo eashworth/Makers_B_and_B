@@ -8,5 +8,7 @@ class User
   property :email,    String
   property :password, String
 
-  has n, :spaces, :requests
+  has n, :spaces
+  has n, :requests
+
 end
