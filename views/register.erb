@@ -1,0 +1,15 @@
+<form action='/register' method='POST'>
+  <input type='text' name='name' placeholder='Name'>
+  <input type='text' name='email' placeholder="Email">
+  <input type='text' name='username' placeholder='Username' id="hello">
+  <input type='password' name='password' placeholder='Password'>
+  <input type='submit' name='submit'>
+</form>
+<%=flash[:notice]%>
+
+<script>
+  document.getElementById('hello').addEventListener('keydown', function(e) {
+    console.log("hello")
+  })
+  User.create
+</script>

@@ -1,0 +1,11 @@
+<h1>Welcome, <%= @user_obj.name %> </h1>
+<h1><%= flash[:notice] %></h1>
+<form action='/logout' method='GET'>
+  <input type='submit' name='logout' value='Logout'>
+</form>
+
+<a href="/listings/all">View Listings</a>
+
+
+
+

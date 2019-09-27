@@ -1,5 +1,6 @@
 require './model/user'
 require './model/space'
+require './lib/login'
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'data_mapper'
@@ -12,23 +13,69 @@ require 'sinatra'
   DataMapper.finalize
 
 class MakersBnb < Sinatra::Base
+  register Sinatra::Flash
 
   enable :sessions
 
   set :public_folder, Proc.new { File.join(root, "static") }
 
   get '/' do
-    erb :index
+    if session[:username]
+      redirect '/home'
+    else
+      erb :index
+    end
   end
 
-  post '/' do
-    name = params[:name]
-    session[:name] = name
-    email = params[:email]
-    password = params[:password]
+  get '/register' do
+    erb :register
+  end
 
-    User.create(:name => name, :email => email, :password => password)
-    redirect 'listings/all'
+  post '/register' do
+    user = User.create(
+      :name => params[:name],
+      :email => params[:email],
+      :username => params[:username]
+    )
+    user.password = params[:password]
+    if user.id
+      session[:username] = params[:username]
+      flash[:notice] = "Registration successful!"
+      redirect '/home'
+    else
+      flash[:notice] = "Username already in use. Please choose another."
+      redirect '/register'
+    end
+  end
+
+  get '/home' do
+    if session[:username]
+      @user_obj = User.first(:username => session[:username])
+      erb :home
+    else
+      redirect '/'
+    end
+  end
+
+  get '/logout' do
+    flash[:notice] = "You have logged out."
+    session[:username] = nil
+    redirect '/'
+  end
+
+  get '/login' do
+    erb :login
+  end
+
+  post '/login' do
+    if Login.check_login(params[:username], params[:password])
+      session[:username] = params[:username]
+      flash[:notice] = "Thank you for logging in."
+      redirect '/home'
+    else
+      flash[:notice] = "Login failed: incorrect username and/or password."
+      redirect '/login'
+    end
   end
 
   get '/listings/all' do
