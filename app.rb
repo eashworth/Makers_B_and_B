@@ -56,7 +56,6 @@ class MakersBnb < Sinatra::Base
     @space_id = Space.get(request.space_id).id
     @requestor_id = request.user_id
     @owner_id = @space_obj.user_id
-
     Booking.create(:date => session[:request_date], :space_id => @space_id, :customer =>  @requestor_id, :owner => @owner_id)
     redirect '/listings/req_approval'
   end
