@@ -9,6 +9,7 @@ feature 'register for an account' do
   scenario 'user registers with an existing a username and is notified it is already in use' do
     DataMapper.auto_migrate!
     register
+    click_button('logout')
     register
     expect(page).to have_content 'Username already in use. Please choose another.'
   end

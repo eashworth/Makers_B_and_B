@@ -35,9 +35,8 @@ class MakersBnb < Sinatra::Base
     user = User.create(
       :name => params[:name],
       :email => params[:email],
-      :username => params[:username]
-    )
-    user.password = params[:password]
+      :username => params[:username],
+      :password => params[:password])
     if user.id
       session[:username] = params[:username]
       flash[:notice] = "Registration successful!"
@@ -88,8 +87,10 @@ class MakersBnb < Sinatra::Base
     price_pn = params[:price_pn]
     date_from = params[:date_from]
     date_to = params[:date_to]
-    @user_obj = User.first(:name => session[:name])
-    Space.create(:name => name, :description => description, :price_pn => price_pn, :date_from => date_from, :date_to => date_to, :user => @user_obj)
+    @user_obj = User.first(:username => session[:username])
+    p "USER OBJECT!!!!!!"
+    p @user_obj
+    p Space.create(:name => name, :description => description, :price_pn => price_pn, :date_from => date_from, :date_to => date_to, :user => @user_obj)
     redirect '/listings/all'
   end
 
